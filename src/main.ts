@@ -1,0 +1,23 @@
+import Vue from 'vue';
+import App from './App.vue';
+import router from '@/router';
+import store from '@/store';
+import config from '@/config';
+import ElementUI,{ Message} from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+
+Vue.prototype.$message = Message;
+
+
+Vue.use(ElementUI);
+
+Vue.prototype.$config =config;
+
+Vue.config.productionTip = false;
+
+new Vue({
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount('#app');
