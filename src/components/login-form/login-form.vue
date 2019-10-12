@@ -9,6 +9,9 @@
 <div style="margin: 20px;"></div>
 
 <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+    <el-form-item label="邮件">
+        <el-input v-model="formLabelAlign.email"></el-input>
+    </el-form-item>
     <el-form-item label="名称">
         <el-input v-model="formLabelAlign.name"></el-input>
     </el-form-item>
@@ -19,11 +22,10 @@
         <el-input v-model="formLabelAlign.type"></el-input>
     </el-form-item>
 </el-form>
-
         <el-row>
         <!-- <el-button>默认按钮</el-button> -->
         <!-- <el-button type="primary">主要按钮</el-button> -->
-        <el-button type="success">确认</el-button>
+        <el-button @click="SaveEmail()" type="success">确认</el-button>
         <el-button type="info">取消</el-button>
         <!-- <el-button type="warning">警告按钮</el-button>
         <el-button type="danger">危险按钮</el-button> -->
@@ -35,6 +37,7 @@
 <script lang='ts'>
 import { mixins } from 'vue-class-component'
 import baseMixin from '@/mixins/baseMixin'
+import { UserModule } from '@/store/modules/user';
 import { Component, Vue,Prop,Watch,Emit} from 'vue-property-decorator'
 @Component({
 components: {
@@ -45,6 +48,7 @@ export default class className extends mixins(baseMixin) {
 private visibilityHeight!: number
 private labelPosition:string = 'right'
 private formLabelAlign= {
+          email:'',
           name: '',
           region: '',
           type: ''
@@ -54,6 +58,11 @@ private formLabelAlign= {
 // returnValue() {
 // return 10
 // }
+private SaveEmail() {
+    console.log('start to save the email address...')
+    UserModule.SET_EMAIL(this.formLabelAlign.email)
+    console.log('current email address is:'+ UserModule.email) 
+}
 }
 </script>
 

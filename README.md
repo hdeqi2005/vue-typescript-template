@@ -9,7 +9,7 @@ Typescript与Javascript共享相同的基本类型，但有一些额外的类型
 3.  protected和private类似，但是，protected成员在派生类中可以访问
 ===============================================================
 
-前端项目开发规范协议如下:
+项目开发维护之"约定俗成":
 1.页面开发摆放顺序
 HTML
 TypeScript
@@ -40,8 +40,10 @@ beforeMount
 mounted
 beforeUpdate
 updated
+====keep-alive 对应两个生命周期=====
 activated
 deactivated
+
 beforeDestroy
 destroyed
 errorCaptured（最后一个生命周期钩子）
@@ -52,11 +54,12 @@ errorCaptured（最后一个生命周期钩子）
 beforeRouteEnter
 beforeRouteUpdate
 beforeRouteLeave
+
 computed
 methods
 ===============================================================
 
-3.组件引用，mixins，filters 等放在 @Component 里面
+3.组件引用，filters 等放在 @Component 里面
 
 ===============================================================
 4.文件命名规范
@@ -65,7 +68,61 @@ methods
   -3.相同模块描述在前，不同描述在后
 
 ===============================================================
+5.页面模板快速生成器:
+ 使用工具:VSCODE
+ 1.添加'注释'用户片段代码:
+   {
+     "Desc Header or Function": {
+		"prefix": "///",
+		"body": [
+			"/**",
+			" * @desc $TM_FILENAME_BASE ${1:描述}",
+			" *",
+			" * @params ${2:参数}",
+			" *",
+			" * @return ${3:返回}",
+			" *",
+			" * @created $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",
+			" */",
+			"$4"
+		],
+		"description": "desc header or function"
+	}
+}
 
+2.添加用户页面代码片段:
+{
+ "ts-class-template": {
+		"prefix": "tsclass",
+		"body": [
+				"import { mixins } from 'vue-class-component'",
+				"import baseMixin from '@/mixins/baseMixin'",
+				"import { Component, Vue,Prop,Watch,Emit} from 'vue-property-decorator'",
+
+				"@Component({",
+				"components: {",
+				"}",
+				"})",
+				"export default class ${1:className} extends mixins(baseMixin) {",
+					"//@Prop({ default: 400 }) private visibilityHeight!: number",
+					"// @Emit()",
+					"// returnValue() {",
+						"// return 10",
+					"// }",
+				"}",
+			"\n",
+		],
+		"description": "ts-class-template"
+	}
+}
+
+===============================================================
+6.文件分离:新建一个文件夹,名称相同, eg:Home.vue + Home.ts 加上代码指向即可:
+ <script lang="ts" src="./Home.ts"></script>
+ -1.好处方便代码跳转,快速定位引用代码位置,
+ -2.方便以后模板重构
+ -3.友好的错误提示,快速发现问题所在,修复问题
+===============================================================
 注意点
 
 如果你引用第三方无类型声明的库，那就需要自己编写x.d.ts文件

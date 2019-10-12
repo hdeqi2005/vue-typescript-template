@@ -27,7 +27,7 @@ outputDir: 'dist',
     //port: 9099,
     proxy: {
       '/api': {
-        target: 'http://shop.szclsoft.com/api/', //对应自己的接口
+        target: 'http://shop.szclsoft.com/clerp-app-api/', //对应自己的接口
         changeOrigin: true,
         ws: true,
         pathRewrite: {

@@ -1,20 +1,19 @@
-import { Component, Vue, Watch } from 'vue-property-decorator'
-declare module "vue/types/vue" {
+import { Component, Vue, Watch } from 'vue-property-decorator';
+
+// 声明合并
+
+declare module 'vue/types/vue' {
     interface Vue {
       $config: any;
     }
   }
-  
-const WIDTH = 992 // refer to Bootstrap's responsive design
+const WIDTH = 992; // refer to Bootstrap's responsive design
 
-@Component({
-  name: 'baseMixin'
-})
-export default class extends Vue {
+export default class BaseMixin extends Vue {
     public userForm = {
-        username: 'admin123',
-        password: '111111'
-      }
+        username: 'admin',
+        password: '111111',
+      };
 //   get device() {
 //     return AppModule.device
 //   }
@@ -30,24 +29,20 @@ export default class extends Vue {
 //     }
 //   }
 
-  beforeMount() {
-    window.addEventListener('resize', this.resizeHandler)
+ private beforeMount() {
+   // window.addEventListener('resize', this.resizeHandler);
   }
 
-  mounted() {
- 
-  }
+  // private mounted(){
+  // };
 
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resizeHandler)
+  private beforeDestroy() {
+   // window.removeEventListener('resize', this.resizeHandler);
   }
 
   private isMobile() {
-    const rect = document.body.getBoundingClientRect()
-    return rect.width - 1 < WIDTH
+    const rect = document.body.getBoundingClientRect();
+    return rect.width - 1 < WIDTH;
   }
 
-  private resizeHandler() {
-   
-  }
 }

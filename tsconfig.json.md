@@ -1,4 +1,12 @@
 {
+   "compilerOptions": {
+    "module": "commonjs",
+    "baseUrl": "./",
+    "paths": {
+        "*": ["types/*"]
+    }
+  },
+  
   // 编译选项
   "compilerOptions": {
     // 输出目录

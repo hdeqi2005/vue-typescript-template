@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import routes from './routers'
-//import { getToken } from '@/utils/common'
+import routes from './routers';
+// import { getToken } from '@/utils/common'
 
 Vue.use(Router);
 
 const router = new Router({
   routes,
   base: process.env.BASE_URL,
-  mode: 'history'
-})
+  mode: 'history',
+});
 
 
 // // 登陆页面路由 name
